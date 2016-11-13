@@ -1,6 +1,5 @@
 package main
 
-import "fmt"
 
 //structure for sets
 
@@ -49,12 +48,33 @@ func (self *Set) intersection(other Set) Set {
 	return nwset
 }
 
-func main() {
-	a := newSet()
-	a.add("ee")
-	a.add("rr")
-	b := newSet()
-	b.add("ee")
-	b.add("g")
-	fmt.Println(a.intersection(b))
+//returns a new set that represents the union of both sets
+func (self *Set) union(other Set) Set {
+	for key, _ := range self.items {
+		other.add(key)
+	}
+	return other
 }
+
+//checks if current set is a subset of another set.
+func (self *Set) isSubSetOf(other Set) bool {
+	result := true
+	for key, _ := range self.items {
+		if !other.contains(key) {
+			result = false
+		}
+	}
+	return result
+}
+
+//checks if current set contains some subset
+func (self *Set) hasSubSet(other Set) bool {
+	result := true
+	for key, _ := range other.items {
+		if !self.contains(key) {
+			result = false
+		}
+	}
+	return result
+}
+
