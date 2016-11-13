@@ -1,6 +1,5 @@
 package main
 
-import "fmt"
 
 //dictionary data structure file
 
@@ -63,9 +62,19 @@ func (self *Dictionary) values() []interface{} {
 	return vallst
 }
 
-func main() {
-	f := newDictionary()
-	f.set("foo", 6)
-	f.set("doom", 3)
-	fmt.Println(f.values())
+//updates one dictionary with the keys and values of another
+func (self *Dictionary) update(other Dictionary) {
+	for key, val := range other.items {
+		self.items[key] = val
+	}
 }
+
+//Only updates a key and value if it doesn't already exist in the dictionary
+func (self *Dictionary) fuse(other Dictionary) {
+	for key, val := range other.items {
+		if !self.contains(key) {
+			self.items[key] = val
+		}
+	}
+}
+
