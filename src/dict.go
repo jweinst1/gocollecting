@@ -1,21 +1,23 @@
-package main
+package gocollecting
 
 
-//dictionary data structure file
 
+//struct that implements a dictionary.
 type Dictionary struct {
 	items map[string]interface{}
 }
 
+//function that returns a new dictionary instance.
 func newDictionary() Dictionary {
 	return Dictionary{make(map[string]interface{})}
 }
 
-//sets any item under an any type
+//sets any item under an any type.
 func (self *Dictionary) set(key string, value interface{}) {
 	self.items[key] = value
 }
 
+//gets the value associated with some key.
 func (self *Dictionary) get(key string) interface{} {
 	val, has := self.items[key]
 	if has {
@@ -25,6 +27,7 @@ func (self *Dictionary) get(key string) interface{} {
 	}
 }
 
+//checks if a dictionary contains a key.
 func (self *Dictionary) contains(key string) bool {
 	_ , has := self.items[key]
 	return has
