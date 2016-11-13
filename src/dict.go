@@ -1,4 +1,4 @@
-package gocollecting
+package main
 
 
 
